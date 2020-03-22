@@ -148,7 +148,7 @@ class TranslationOptions extends BoxedStateComponent {
                     </div>
                     {/*
                         <div className="col-sm-3">
-                            <?php if(str_contains($userLocales, ',' . $currentLocale . ',')): ?>
+                            <?php if(\Str::contains($userLocales, ',' . $currentLocale . ',')): ?>
                                 <div className="input-group input-group-sm" style="float:right; display:inline">
                                     <?= ifEditTrans($package . '::messages.in-place-edit') ?>
                                     <label htmlFor="edit-in-place">&nbsp;</label>

@@ -71,7 +71,7 @@ class Controller extends BaseController
 
         $this->cookiePrefix = $this->manager->config('persistent_prefix', 'K9N6YPi9WHwKp6E3jGbx');
 
-        // cookies are not available yet (they are but appear to be encrypted). They will be by the time middleware is called 
+        // cookies are not available yet (they are but appear to be encrypted). They will be by the time middleware is called
         $this->middleware(function ($request, $next) {
             $this->manager->setWebUI(); // no need to clear
             $this->initialize();
@@ -245,14 +245,14 @@ class Controller extends BaseController
         $packLocales = TranslationLocales::packLocales($this->transLocales->userLocales);
         if (!is_array($locale)) $locale = array($locale);
         foreach ($locale as $item) {
-            if (!str_contains($packLocales, ',' . $item . ',')) return false;
+            if (!\Str::contains($packLocales, ',' . $item . ',')) return false;
         }
         return true;
     }
 
     /*
          * Standard WEB UI - API, not REST
-         * 
+         *
          */
 
     public function getSearch()
@@ -679,7 +679,7 @@ class Controller extends BaseController
         $prefix = '';
         $gkey = $key;
 
-        if (starts_with($key, 'vnd:') || starts_with($key, 'wbn:')) {
+        if (\Str::startsWith($key, 'vnd:') || \Str::startsWith($key, 'wbn:')) {
             // these have vendor with . afterwards in the group
             $parts = explode('.', $key, 2);
 
@@ -891,7 +891,7 @@ class Controller extends BaseController
         Route::get('publish/{group}', '\\Vsch\\TranslationManager\\Controller@getPublish');
         Route::get('import', '\\Vsch\\TranslationManager\\Controller@getImport');
 
-        // shared web and api urls 
+        // shared web and api urls
         // TODO: migrate to Rest Controller for implementation
         Route::post('edit/{group}', '\\Vsch\\TranslationManager\\Controller@postEdit');
         Route::post('undelete/{group}/{key}', '\\Vsch\\TranslationManager\\Controller@postUndelete');
@@ -912,7 +912,7 @@ class Controller extends BaseController
 
     /*
      * React UI - API
-     * 
+     *
      */
     public static function apiRoutes($disableReactUI)
     {
@@ -948,7 +948,7 @@ class Controller extends BaseController
 
             Route::post('api/trans-filters', '\\Vsch\\TranslationManager\\Controller@apiTransFilters');
 
-            // shared web and api urls 
+            // shared web and api urls
             // TODO: migrate to Rest Controller for implementation
             Route::post('api/delete/{group}/{key}', '\\Vsch\\TranslationManager\\Controller@postDelete');
             Route::post('api/edit/{group}', '\\Vsch\\TranslationManager\\Controller@postEdit');

@@ -277,7 +277,7 @@ class Manager
             && array_key_exists($attributes['locale'], $this->preloadedGroupLocales)
         ) {
             $checkDB = false;
-            
+
             if (array_key_exists($attributes['key'], $this->preloadedGroupKeys)
                 && array_key_exists($attributes['locale'], $this->preloadedGroupKeys[$attributes['key']])
             ) {
@@ -390,7 +390,7 @@ class Manager
             $this->augmentedGroupReverseList = [];
 
             foreach ($groupList as $group) {
-                if (starts_with($group, ["vnd:", "wbn:"])) {
+                if (\Str::startsWith($group, ["vnd:", "wbn:"])) {
                     // we need this one
                     $parts = explode('.', $group, 2);
                     if (count($parts) === 2) {
@@ -656,7 +656,7 @@ class Manager
             $localePrefix = "$locale:";
             $prefixLen = strlen($localePrefix);
             foreach ($values as $key => $translation) {
-                if (str_starts_with($key, $localePrefix)) {
+                if (\Str::startsWith($key, $localePrefix)) {
                     $transKey = substr($key, $prefixLen);
                     $translations[$transKey] = $translation;
                 }
@@ -856,7 +856,7 @@ class Manager
         $dbTranslations = $this->translatorRepository->selectTranslationsByLocaleAndGroup($locale, $db_group);
         $inDatabasePublishing = $this->inDatabasePublishing();
 
-        // we are either in-database publishing or writing the files but pretending that we are for a remote 
+        // we are either in-database publishing or writing the files but pretending that we are for a remote
         // connection which is really limited to do in-database publishing only
         $inDatabasePublishing = $inDatabasePublishing === 1 || $inDatabasePublishing === 2 ? $inDatabasePublishing : 0;
 
@@ -1297,8 +1297,8 @@ class Manager
                     foreach ($matches[3] as $index => $key) {
                         $quote = $matches[2][$index][0];
                         $keyValue = $key[0];
-                        if ($quote == '\'' && !str_contains($keyValue, ["\"", "'", "->",]) ||
-                            $quote == '"' && !str_contains($keyValue, ["$", "\"", "'", "->",])
+                        if ($quote == '\'' && !\Str::contains($keyValue, ["\"", "'", "->",]) ||
+                            $quote == '"' && !\Str::contains($keyValue, ["$", "\"", "'", "->",])
                         ) {
                             if ($fileLines == null) {
                                 $fileLines = self::computeFileLines($fileContents);
@@ -1659,7 +1659,7 @@ class Manager
     protected
     function getLostDotTranslation($translations, $tree)
     {
-        // check if all translation values are in the array or some were lost because of invalid dot notation for keys 
+        // check if all translation values are in the array or some were lost because of invalid dot notation for keys
         $nonArrays = array();
         foreach ($translations as $translation) {
             $group = $translation->group;
@@ -1668,7 +1668,7 @@ class Manager
                 $value = array_get($tree[$translation->locale][$translation->group], $translation->key);
 
                 if (is_array($value)) {
-                    // this one is an array while it is a translation in the source 
+                    // this one is an array while it is a translation in the source
                     $nonArrays[$group][$key] = $translation;
                 }
             }

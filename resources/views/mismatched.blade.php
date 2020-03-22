@@ -20,7 +20,7 @@
                         $mismatches[] = null;
                         $locale = $translatingLocale;
                         $translator = App::make('translator');
-                        $isLocaleEnabled = str_contains($userLocales, ',' . $locale . ',');
+                        $isLocaleEnabled = \Str::contains($userLocales, ',' . $locale . ',');
                         foreach($mismatches as $mismatch)
                         {
                         if ($mismatch === null) break;

@@ -224,7 +224,7 @@
                                             <input type="hidden" name="_token"
                                                     value="<?php echo csrf_token(); ?>">
                                         </form>
-                                    <?php endif; ?>    
+                                    <?php endif; ?>
                                     <form id="form-publish-all" class="form-inline form-publish-all" method="POST"
                                             action="<?= action($controller . '@postPublish', '*') ?>"
                                             data-remote="true" role="form">
@@ -312,7 +312,7 @@
                                     </div>
                                 </div>
                                 <div class=" col-sm-3">
-                                    <?php if(str_contains($userLocales, ',' . $currentLocale . ',')): ?>
+                                    <?php if(\Str::contains($userLocales, ',' . $currentLocale . ',')): ?>
                                     <div class="input-group input-group-sm" style="float:right; display:inline">
                                         <?= ifEditTrans($package . '::messages.in-place-edit') ?>
                                         <label for="edit-in-place">&nbsp;</label>
@@ -865,7 +865,7 @@
         var URL_TRANSLATOR_FILTERS = '<?= action($controller . '@getTransFilters') ?>';
         var CURRENT_GROUP = '<?= $group ?>';
         var MARKDOWN_KEY_SUFFIX = '<?= $markdownKeySuffix ?>';
-        
+
         // provide translations for JavaScript
         var MISMATCHED_QUOTES_MESSAGE = "<?= noEditTrans(($package . '::messages.mismatched-quotes'))?>";
         var TITLE_SAVE_CHANGES = "<?= noEditTrans(($package . '::messages.title-save-changes'))?>";

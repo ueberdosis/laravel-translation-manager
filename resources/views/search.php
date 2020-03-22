@@ -13,11 +13,11 @@
     </tr>
   </thead>
   <tbody>
-      <?php 
-      $translator = App::make('translator'); 
+      <?php
+      $translator = App::make('translator');
       foreach ($translations as $t):
-          $groupUrl = action($controller . '@getView', $t->group); 
-          $isLocaleEnabled = str_contains($userLocales, ',' . $t->locale . ',');
+          $groupUrl = action($controller . '@getView', $t->group);
+          $isLocaleEnabled = \Str::contains($userLocales, ',' . $t->locale . ',');
           if ($t->group === Manager::JSON_GROUP && $t->locale === 'json' && $t->value === null || $t->value === '') {
               $t->value = $t->key;
           }

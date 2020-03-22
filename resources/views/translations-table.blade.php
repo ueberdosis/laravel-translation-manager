@@ -31,7 +31,7 @@
             <span class="key-filter" id="key-filter"><?=$translationRows?></span>
         </th>
         <?php foreach($locales as $locale): ?>
-        <?php $isLocaleEnabled = str_contains($userLocalesString, ',' . $locale . ','); ?>
+        <?php $isLocaleEnabled = \Str::contains($userLocalesString, ',' . $locale . ','); ?>
         <?php if (!array_key_exists($locale, $useDisplayLocales)) continue; ?>
         <?php $jsonAdjustedLocale = $locale === 'json' ? app('translator')->get($package . '::messages.json-key') : $locale;if ($col < 3): ?>
         <?php if ($col === 0): ?>
@@ -164,7 +164,7 @@
             </a><?php
             } ?></td>
         <?php foreach($locales as $locale): ?>
-        <?php $isLocaleEnabled = str_contains($userLocalesString, ',' . $locale . ','); ?>
+        <?php $isLocaleEnabled = \Str::contains($userLocalesString, ',' . $locale . ','); ?>
         <?php if (!array_key_exists($locale, $useDisplayLocales)) continue; ?>
         <?php $t = isset($translation[$locale]) ? $translation[$locale] : null ?>
         <td class="<?= $locale !== $primaryLocale ? 'auto-translatable-' . $locale : ($locale === $primaryLocale ? 'auto-fillable' : '') ?><?= ($has_changed[$locale] ? ' has-unpublished-translation' : '') . ($has_changes_cached[$locale] ? ' has-cached-translation' : '') ?>">
