@@ -1,6 +1,6 @@
 <?php
 
-namespace Cvaize\TranslationManager;
+namespace Vsch\TranslationManager;
 
 use Carbon\Carbon;
 use Exception;
@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\Finder\Finder;
-use Cvaize\TranslationManager\Classes\PathTemplateResolver;
-use Cvaize\TranslationManager\Classes\TranslationFileRewriter;
-use Cvaize\TranslationManager\Models\Translation;
-use Cvaize\TranslationManager\Models\UserLocales;
-use Cvaize\TranslationManager\Repositories\Interfaces\ITranslatorRepository;
+use Vsch\TranslationManager\Classes\PathTemplateResolver;
+use Vsch\TranslationManager\Classes\TranslationFileRewriter;
+use Vsch\TranslationManager\Models\Translation;
+use Vsch\TranslationManager\Models\UserLocales;
+use Vsch\TranslationManager\Repositories\Interfaces\ITranslatorRepository;
 use ZipArchive;
 
 /**
  * Class Manager
  *
- * @package Cvaize\TranslationManager
+ * @package Vsch\TranslationManager
  */
 class Manager
 {
@@ -189,7 +189,7 @@ class Manager
     }
 
     /**
-     * @return \Cvaize\TranslationManager\Models\Translation
+     * @return \Vsch\TranslationManager\Models\Translation
      */
     public function getTranslation()
     {
@@ -277,7 +277,7 @@ class Manager
             && array_key_exists($attributes['locale'], $this->preloadedGroupLocales)
         ) {
             $checkDB = false;
-
+            
             if (array_key_exists($attributes['key'], $this->preloadedGroupKeys)
                 && array_key_exists($attributes['locale'], $this->preloadedGroupKeys[$attributes['key']])
             ) {
@@ -720,7 +720,7 @@ class Manager
      * @param bool $useLottery
      * @param bool $findOrNew
      *
-     * @return \Cvaize\TranslationManager\Models\Translation|null
+     * @return \Vsch\TranslationManager\Models\Translation|null
      */
     public function missingKey($namespace, $group, $key, $locale = null, $useLottery = true, $findOrNew = false)
     {
@@ -803,7 +803,7 @@ class Manager
                         }
                     }
 
-                    /* @var $translation \Cvaize\TranslationManager\Models\Translation */
+                    /* @var $translation \Vsch\TranslationManager\Models\Translation */
                     return $translation;
                 }
             }
@@ -856,7 +856,7 @@ class Manager
         $dbTranslations = $this->translatorRepository->selectTranslationsByLocaleAndGroup($locale, $db_group);
         $inDatabasePublishing = $this->inDatabasePublishing();
 
-        // we are either in-database publishing or writing the files but pretending that we are for a remote
+        // we are either in-database publishing or writing the files but pretending that we are for a remote 
         // connection which is really limited to do in-database publishing only
         $inDatabasePublishing = $inDatabasePublishing === 1 || $inDatabasePublishing === 2 ? $inDatabasePublishing : 0;
 
@@ -1659,7 +1659,7 @@ class Manager
     protected
     function getLostDotTranslation($translations, $tree)
     {
-        // check if all translation values are in the array or some were lost because of invalid dot notation for keys
+        // check if all translation values are in the array or some were lost because of invalid dot notation for keys 
         $nonArrays = array();
         foreach ($translations as $translation) {
             $group = $translation->group;
@@ -1668,7 +1668,7 @@ class Manager
                 $value = array_get($tree[$translation->locale][$translation->group], $translation->key);
 
                 if (is_array($value)) {
-                    // this one is an array while it is a translation in the source
+                    // this one is an array while it is a translation in the source 
                     $nonArrays[$group][$key] = $translation;
                 }
             }

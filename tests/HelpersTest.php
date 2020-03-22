@@ -1,8 +1,8 @@
-<?php namespace Cvaize\Tests;
+<?php namespace Vsch\Tests;
 
 use Exception;
 
-class HelpersTest extends \Cvaize\Tests\TranslationManagerTestCase
+class HelpersTest extends \Vsch\Tests\TranslationManagerTestCase
 {
 
     /**
@@ -90,7 +90,7 @@ class HelpersTest extends \Cvaize\Tests\TranslationManagerTestCase
                 'abcdefghijklmno abcdefghijklmno abcdefghijklmno',
                 false
             ),
-
+            
             array('abc', 'def', 'this is a test', false),
             array('abc', 'uvwxyz', 'abcdef abcdef', false),
             array(['abc', 'abcdef'], ['hijklm', 'rstuvwxyz',], ['abcdef abcdef abcef', 'abcdef abcdef abcef',], false),

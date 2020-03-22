@@ -1,4 +1,4 @@
-<?php namespace Cvaize\TranslationManager;
+<?php namespace Vsch\TranslationManager;
 
 use Illuminate\Contracts\Translation\Loader;
 use Illuminate\Events\Dispatcher;
@@ -34,7 +34,7 @@ class Translator extends LaravelTranslator
 
     // Storage used for used translation keys
     protected $usedKeys = array();
-
+    
     protected $customPostProcessor = null;
 
     /**
@@ -121,7 +121,7 @@ class Translator extends LaravelTranslator
             $queuedCookieLocale = \Cookie::queued($key, null);
             $locale = getSupportedLocale($queuedCookieLocale != null ? $queuedCookieLocale->getValue() : \Cookie::get($key, ''));
             parent::setLocale($locale);
-
+            
             // load unpublished translation flag at the same time
             $this->getShowUnpublished();
             $this->cookiesLoaded = true;
@@ -313,7 +313,7 @@ class Translator extends LaravelTranslator
             if ($t) {
                 $title = parent::get($this->packagePrefix . 'messages.enter-translation');
 
-                $action = URL::action(ManagerServiceProvider::CONTROLLER_PREFIX . 'Cvaize\TranslationManager\Controller@postEdit', array($t->group));
+                $action = URL::action(ManagerServiceProvider::CONTROLLER_PREFIX . 'Vsch\TranslationManager\Controller@postEdit', array($t->group));
 
                 $result = '<a href="#edit" class="vsch_editable status-' . ($t->status ?: 0)
                     . ' locale-' . $t->locale
@@ -346,7 +346,7 @@ class Translator extends LaravelTranslator
                 return call_user_func($this->customPostProcessor, $replaced);
             } else {
                 return $this->makeReplacements($line, $replace);
-            }
+            } 
         }
         return $line;
     }
@@ -725,7 +725,7 @@ HTML;
     public function setTranslationManager(Manager $manager)
     {
         $this->manager = $manager;
-        $this->package = \Cvaize\TranslationManager\ManagerServiceProvider::PACKAGE;
+        $this->package = \Vsch\TranslationManager\ManagerServiceProvider::PACKAGE;
         $this->packagePrefix = $this->package . '::';
         $this->cookiePrefix = $this->manager->config('persistent_prefix', $this->packagePrefix);
         $this->useCookies = $this->manager->config('use_cookies', true);
@@ -751,8 +751,8 @@ HTML;
 
     public static function routes()
     {
-        $config = App::get('config')[\Cvaize\TranslationManager\ManagerServiceProvider::PACKAGE];
-        $key = \Cvaize\TranslationManager\Manager::DISABLE_REACT_UI;
+        $config = App::get('config')[\Vsch\TranslationManager\ManagerServiceProvider::PACKAGE];
+        $key = \Vsch\TranslationManager\Manager::DISABLE_REACT_UI;
 
         $disableReactUI = array_key_exists($key, $config) ? $config[$key] : false;
         Controller::routes($disableReactUI);
@@ -765,8 +765,8 @@ HTML;
 
     public static function apiRoutes()
     {
-        $config = App::get('config')[\Cvaize\TranslationManager\ManagerServiceProvider::PACKAGE];
-        $key = \Cvaize\TranslationManager\Manager::DISABLE_REACT_UI;
+        $config = App::get('config')[\Vsch\TranslationManager\ManagerServiceProvider::PACKAGE];
+        $key = \Vsch\TranslationManager\Manager::DISABLE_REACT_UI;
 
         $disableReactUI = array_key_exists($key, $config) ? $config[$key] : false;
         Controller::apiRoutes($disableReactUI);

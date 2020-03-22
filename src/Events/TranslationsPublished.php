@@ -6,7 +6,7 @@
  * Time: 12:11 PM
  */
 
-namespace Cvaize\TranslationManager\Events;
+namespace Vsch\TranslationManager\Events;
 
 use Illuminate\Queue\SerializesModels;
 

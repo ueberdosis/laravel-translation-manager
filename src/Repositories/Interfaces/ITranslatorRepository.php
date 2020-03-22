@@ -1,21 +1,21 @@
 <?php
 
-namespace Cvaize\TranslationManager\Repositories\Interfaces;
+namespace Vsch\TranslationManager\Repositories\Interfaces;
 
-use Cvaize\TranslationManager\Models\Translation;
+use Vsch\TranslationManager\Models\Translation;
 
 interface ITranslatorRepository
 {
     /**
      * Return the translation used for database access.
-     *
+     * 
      * All connection changes will be done on this instance
      * Its connection MUST BE USED FOR ALL OPERATIONS
-     *
+     * 
      * Otherwise alternate connections in the UI will not work properly
-     * DO NOT CACHE ITS CONNECTION except in local variable of a function for the
+     * DO NOT CACHE ITS CONNECTION except in local variable of a function for the 
      * duration of the function.
-     *
+     * 
      * @return Translation
      */
     public function getTranslation();
@@ -45,7 +45,7 @@ interface ITranslatorRepository
     public function deleteTranslationWhereIsDeleted($group = null);
 
     public function deleteTranslationByGroup($group);
-
+    
     public function deleteTranslationByGroupLocale($group, $locale);
 
     public function updatePublishTranslations($newStatus, $group = null, $locale = null);

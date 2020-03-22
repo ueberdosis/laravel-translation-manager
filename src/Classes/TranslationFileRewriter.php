@@ -6,12 +6,12 @@
  * Time: 6:33 PM
  */
 
-namespace Cvaize\TranslationManager\Classes;
+namespace Vsch\TranslationManager\Classes;
 
 /**
  * Class TranslationFileRewriter
  *
- * @package Cvaize\TranslationManager\Classes
+ * @package Vsch\TranslationManager\Classes
  * Class to handle parsing of PHP code aimed specifically at config files for the purpose of
  *          changing the declarations and values while preserving multi-line comments
  *  The format of the file is expected to be:
@@ -25,7 +25,7 @@ namespace Cvaize\TranslationManager\Classes;
 /**
  * Class TranslationFileRewriter
  *
- * @package Cvaize\TranslationManager\Classes
+ * @package Vsch\TranslationManager\Classes
  */
 class TranslationFileRewriter
 {

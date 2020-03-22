@@ -1,6 +1,6 @@
 <?php
 
-namespace Cvaize\TranslationManager;
+namespace Vsch\TranslationManager;
 
 use Closure;
 use Illuminate\Support\Facades\App;

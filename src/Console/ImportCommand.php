@@ -1,8 +1,8 @@
-<?php namespace Cvaize\TranslationManager\Console;
+<?php namespace Vsch\TranslationManager\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
-use Cvaize\TranslationManager\Manager;
+use Vsch\TranslationManager\Manager;
 
 class ImportCommand extends Command
 {
@@ -21,7 +21,7 @@ class ImportCommand extends Command
      */
     protected $description = 'Import translations from the PHP sources';
 
-    /** @var  \Cvaize\TranslationManager\Manager */
+    /** @var  \Vsch\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

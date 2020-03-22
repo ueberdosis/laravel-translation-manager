@@ -1,4 +1,4 @@
-<?php namespace Cvaize\Tests;
+<?php namespace Vsch\Tests;
 
 class TranslationManagerTestCase extends \Illuminate\Foundation\Testing\TestCase
 {

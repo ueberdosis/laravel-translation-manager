@@ -5,7 +5,7 @@
  * Date: 15-07-20
  * Time: 4:50 PM
  */
-use Cvaize\TranslationManager\Translator;
+use Vsch\TranslationManager\Translator;
 
 if (!function_exists('getSupportedLocale')) {
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Cvaize\TranslationManager\Models;
+namespace Vsch\TranslationManager\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
