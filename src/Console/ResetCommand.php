@@ -1,7 +1,7 @@
-<?php namespace Vsch\TranslationManager\Console;
+<?php namespace Cvaize\TranslationManager\Console;
 
 use Illuminate\Console\Command;
-use Vsch\TranslationManager\Manager;
+use Cvaize\TranslationManager\Manager;
 
 class ResetCommand extends Command
 {
@@ -20,7 +20,7 @@ class ResetCommand extends Command
      */
     protected $description = 'Delete all translations from the database';
 
-    /** @var \Vsch\TranslationManager\Manager */
+    /** @var \Cvaize\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

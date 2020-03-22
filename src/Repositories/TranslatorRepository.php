@@ -1,9 +1,9 @@
 <?php
 
-namespace Vsch\TranslationManager\Repositories;
+namespace Cvaize\TranslationManager\Repositories;
 
-use Vsch\TranslationManager\Repositories\Interfaces\ITranslatorRepository;
-use Vsch\TranslationManager\Models\Translation;
+use Cvaize\TranslationManager\Repositories\Interfaces\ITranslatorRepository;
+use Cvaize\TranslationManager\Models\Translation;
 
 abstract class TranslatorRepository implements ITranslatorRepository
 {

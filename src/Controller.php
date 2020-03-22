@@ -1,4 +1,4 @@
-<?php namespace Vsch\TranslationManager;
+<?php namespace Cvaize\TranslationManager;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\App;
@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Vsch\TranslationManager\Classes\TranslationLocales;
-use Vsch\TranslationManager\Events\TranslationsPublished;
-use Vsch\TranslationManager\Models\Translation;
-use Vsch\TranslationManager\Models\UserLocales;
+use Cvaize\TranslationManager\Classes\TranslationLocales;
+use Cvaize\TranslationManager\Events\TranslationsPublished;
+use Cvaize\TranslationManager\Models\Translation;
+use Cvaize\TranslationManager\Models\UserLocales;
 
 include_once(__DIR__ . '/Support/finediff.php');
 
@@ -31,7 +31,7 @@ class Controller extends BaseController
     const COOKIE_TRANS_FILTERS = 'trans-filters';
     const COOKIE_SHOW_UNPUBLISHED = 'show-unpublished';
 
-    /** @var \Vsch\TranslationManager\Manager */
+    /** @var \Cvaize\TranslationManager\Manager */
     protected $manager;
     protected $packagePrefix;
     protected $package;
@@ -51,7 +51,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->package = \Vsch\TranslationManager\ManagerServiceProvider::PACKAGE;
+        $this->package = \Cvaize\TranslationManager\ManagerServiceProvider::PACKAGE;
         $this->packagePrefix = $this->package . '::';
         $this->manager = App::make($this->package);
         $this->translatorRepository = $this->manager->getRepository();
@@ -71,7 +71,7 @@ class Controller extends BaseController
 
         $this->cookiePrefix = $this->manager->config('persistent_prefix', 'K9N6YPi9WHwKp6E3jGbx');
 
-        // cookies are not available yet (they are but appear to be encrypted). They will be by the time middleware is called 
+        // cookies are not available yet (they are but appear to be encrypted). They will be by the time middleware is called
         $this->middleware(function ($request, $next) {
             $this->manager->setWebUI(); // no need to clear
             $this->initialize();
@@ -252,7 +252,7 @@ class Controller extends BaseController
 
     /*
          * Standard WEB UI - API, not REST
-         * 
+         *
          */
 
     public function getSearch()
@@ -863,45 +863,45 @@ class Controller extends BaseController
 
     public static function webRoutes()
     {
-        Route::get('view/{group?}', '\\Vsch\\TranslationManager\\Controller@getView');
+        Route::get('view/{group?}', '\\Cvaize\\TranslationManager\\Controller@getView');
 
-        //deprecated: Route::controller('admin/translations', '\\Vsch\\TranslationManager\\Controller');
-        Route::get('/', '\\Vsch\\TranslationManager\\Controller@getIndex');
-        Route::get('connection', '\\Vsch\\TranslationManager\\Controller@getConnection');
-        Route::get('index', '\\Vsch\\TranslationManager\\Controller@getIndex');
-        Route::get('interface_locale', '\\Vsch\\TranslationManager\\Controller@getTranslationLocales');
-        Route::get('keyop/{group}/{op?}', '\\Vsch\\TranslationManager\\Controller@getKeyop');
-        Route::get('search', '\\Vsch\\TranslationManager\\Controller@getSearch');
-        Route::get('toggle_in_place_edit', '\\Vsch\\TranslationManager\\Controller@getToggleInPlaceEdit');
-        Route::get('toggle_show_unpublished', '\\Vsch\\TranslationManager\\Controller@getToggleShowUnpublished');
-        Route::get('translation', '\\Vsch\\TranslationManager\\Controller@getTranslation');
-        Route::get('usage_info', '\\Vsch\\TranslationManager\\Controller@getUsageInfo');
-        Route::get('view/{group?}', '\\Vsch\\TranslationManager\\Controller@getView');
-        Route::get('trans_filters', '\\Vsch\\TranslationManager\\Controller@getTransFilters');
-        Route::post('find', '\\Vsch\\TranslationManager\\Controller@postFind');
-        Route::post('yandex_key', '\\Vsch\\TranslationManager\\Controller@postYandexKey');
-        Route::post('delete_suffixed_keys/{group}', '\\Vsch\\TranslationManager\\Controller@postDeleteSuffixedKeys');
-        Route::post('add/{group}', '\\Vsch\\TranslationManager\\Controller@postAddSuffixedKeys');
-        Route::post('show_source/{group}/{key}', '\\Vsch\\TranslationManager\\Controller@postShowSource');
-        Route::post('delete/{group}/{key}', '\\Vsch\\TranslationManager\\Controller@postDelete');
-        Route::post('delete_all/{group}', '\\Vsch\\TranslationManager\\Controller@postDeleteAll');
-        Route::post('publish/{group}', '\\Vsch\\TranslationManager\\Controller@postPublish');
-        Route::post('import/{group}', '\\Vsch\\TranslationManager\\Controller@postImport');
-        Route::get('zipped_translations/{group?}', '\\Vsch\\TranslationManager\\Controller@getZippedTranslations');
-        Route::get('publish/{group}', '\\Vsch\\TranslationManager\\Controller@getPublish');
-        Route::get('import', '\\Vsch\\TranslationManager\\Controller@getImport');
+        //deprecated: Route::controller('admin/translations', '\\Cvaize\\TranslationManager\\Controller');
+        Route::get('/', '\\Cvaize\\TranslationManager\\Controller@getIndex');
+        Route::get('connection', '\\Cvaize\\TranslationManager\\Controller@getConnection');
+        Route::get('index', '\\Cvaize\\TranslationManager\\Controller@getIndex');
+        Route::get('interface_locale', '\\Cvaize\\TranslationManager\\Controller@getTranslationLocales');
+        Route::get('keyop/{group}/{op?}', '\\Cvaize\\TranslationManager\\Controller@getKeyop');
+        Route::get('search', '\\Cvaize\\TranslationManager\\Controller@getSearch');
+        Route::get('toggle_in_place_edit', '\\Cvaize\\TranslationManager\\Controller@getToggleInPlaceEdit');
+        Route::get('toggle_show_unpublished', '\\Cvaize\\TranslationManager\\Controller@getToggleShowUnpublished');
+        Route::get('translation', '\\Cvaize\\TranslationManager\\Controller@getTranslation');
+        Route::get('usage_info', '\\Cvaize\\TranslationManager\\Controller@getUsageInfo');
+        Route::get('view/{group?}', '\\Cvaize\\TranslationManager\\Controller@getView');
+        Route::get('trans_filters', '\\Cvaize\\TranslationManager\\Controller@getTransFilters');
+        Route::post('find', '\\Cvaize\\TranslationManager\\Controller@postFind');
+        Route::post('yandex_key', '\\Cvaize\\TranslationManager\\Controller@postYandexKey');
+        Route::post('delete_suffixed_keys/{group}', '\\Cvaize\\TranslationManager\\Controller@postDeleteSuffixedKeys');
+        Route::post('add/{group}', '\\Cvaize\\TranslationManager\\Controller@postAddSuffixedKeys');
+        Route::post('show_source/{group}/{key}', '\\Cvaize\\TranslationManager\\Controller@postShowSource');
+        Route::post('delete/{group}/{key}', '\\Cvaize\\TranslationManager\\Controller@postDelete');
+        Route::post('delete_all/{group}', '\\Cvaize\\TranslationManager\\Controller@postDeleteAll');
+        Route::post('publish/{group}', '\\Cvaize\\TranslationManager\\Controller@postPublish');
+        Route::post('import/{group}', '\\Cvaize\\TranslationManager\\Controller@postImport');
+        Route::get('zipped_translations/{group?}', '\\Cvaize\\TranslationManager\\Controller@getZippedTranslations');
+        Route::get('publish/{group}', '\\Cvaize\\TranslationManager\\Controller@getPublish');
+        Route::get('import', '\\Cvaize\\TranslationManager\\Controller@getImport');
 
-        // shared web and api urls 
+        // shared web and api urls
         // TODO: migrate to Rest Controller for implementation
-        Route::post('edit/{group}', '\\Vsch\\TranslationManager\\Controller@postEdit');
-        Route::post('undelete/{group}/{key}', '\\Vsch\\TranslationManager\\Controller@postUndelete');
-        Route::post('user_locales', '\\Vsch\\TranslationManager\\Controller@postUserLocales');
+        Route::post('edit/{group}', '\\Cvaize\\TranslationManager\\Controller@postEdit');
+        Route::post('undelete/{group}/{key}', '\\Cvaize\\TranslationManager\\Controller@postUndelete');
+        Route::post('user_locales', '\\Cvaize\\TranslationManager\\Controller@postUserLocales');
 
         // TODO: implement a json api for wild-card key ops
-        Route::post('delete_keys/{group}', '\\Vsch\\TranslationManager\\Controller@postDeleteKeys');
-        Route::post('copy_keys/{group}', '\\Vsch\\TranslationManager\\Controller@postCopyKeys');
-        Route::post('move_keys/{group}', '\\Vsch\\TranslationManager\\Controller@postMoveKeys');
-        Route::post('preview_keys/{group}', '\\Vsch\\TranslationManager\\Controller@postPreviewKeys');
+        Route::post('delete_keys/{group}', '\\Cvaize\\TranslationManager\\Controller@postDeleteKeys');
+        Route::post('copy_keys/{group}', '\\Cvaize\\TranslationManager\\Controller@postCopyKeys');
+        Route::post('move_keys/{group}', '\\Cvaize\\TranslationManager\\Controller@postMoveKeys');
+        Route::post('preview_keys/{group}', '\\Cvaize\\TranslationManager\\Controller@postPreviewKeys');
     }
 
     public static function routes($disableReactUI)
@@ -912,48 +912,48 @@ class Controller extends BaseController
 
     /*
      * React UI - API
-     * 
+     *
      */
     public static function apiRoutes($disableReactUI)
     {
         // REST API for Rect-UI
         if (!$disableReactUI) {
-            Route::get('ui', '\\Vsch\\TranslationManager\\Controller@getUI');
-            Route::get('ui/{all?}', '\\Vsch\\TranslationManager\\Controller@getUI')->where('all', '.*');
+            Route::get('ui', '\\Cvaize\\TranslationManager\\Controller@getUI');
+            Route::get('ui/{all?}', '\\Cvaize\\TranslationManager\\Controller@getUI')->where('all', '.*');
 
-            Route::get('api/app-settings', '\\Vsch\\TranslationManager\\Controller@getAppSettings');
-            Route::post('api/app-settings', '\\Vsch\\TranslationManager\\Controller@postAppSettings');
+            Route::get('api/app-settings', '\\Cvaize\\TranslationManager\\Controller@getAppSettings');
+            Route::post('api/app-settings', '\\Cvaize\\TranslationManager\\Controller@postAppSettings');
 
-            Route::get('api/translations/{group}/{locale}', '\\Vsch\\TranslationManager\\Controller@getTranslations');
-            Route::post('api/search', '\\Vsch\\TranslationManager\\Controller@apiSearch');
-            Route::post('api/summary', '\\Vsch\\TranslationManager\\Controller@apiSummary');
-            Route::post('api/translation-table/{group}', '\\Vsch\\TranslationManager\\Controller@apiTranslationTable');
-            Route::post('api/user-list', '\\Vsch\\TranslationManager\\Controller@apiUserList');
-            Route::post('api/mismatches', '\\Vsch\\TranslationManager\\Controller@apiMismatches');
+            Route::get('api/translations/{group}/{locale}', '\\Cvaize\\TranslationManager\\Controller@getTranslations');
+            Route::post('api/search', '\\Cvaize\\TranslationManager\\Controller@apiSearch');
+            Route::post('api/summary', '\\Cvaize\\TranslationManager\\Controller@apiSummary');
+            Route::post('api/translation-table/{group}', '\\Cvaize\\TranslationManager\\Controller@apiTranslationTable');
+            Route::post('api/user-list', '\\Cvaize\\TranslationManager\\Controller@apiUserList');
+            Route::post('api/mismatches', '\\Cvaize\\TranslationManager\\Controller@apiMismatches');
 
-            Route::post('api/delete-suffixed-keys/{group}', '\\Vsch\\TranslationManager\\Controller@apiDeleteSuffixedKeys');
-            Route::post('api/add-suffixed-keys/{group}', '\\Vsch\\TranslationManager\\Controller@apiAddSuffixedKeys');
-            Route::post('api/key-references/{group}/{key?}', '\\Vsch\\TranslationManager\\Controller@apiKeyReferences');
-            Route::post('api/delete-group/{group}', '\\Vsch\\TranslationManager\\Controller@apiDeleteGroup');
-            Route::post('api/find-references', '\\Vsch\\TranslationManager\\Controller@apiFindReferences');
-            Route::post('api/clear-ui-settings', '\\Vsch\\TranslationManager\\Controller@postClearUISettings');
+            Route::post('api/delete-suffixed-keys/{group}', '\\Cvaize\\TranslationManager\\Controller@apiDeleteSuffixedKeys');
+            Route::post('api/add-suffixed-keys/{group}', '\\Cvaize\\TranslationManager\\Controller@apiAddSuffixedKeys');
+            Route::post('api/key-references/{group}/{key?}', '\\Cvaize\\TranslationManager\\Controller@apiKeyReferences');
+            Route::post('api/delete-group/{group}', '\\Cvaize\\TranslationManager\\Controller@apiDeleteGroup');
+            Route::post('api/find-references', '\\Cvaize\\TranslationManager\\Controller@apiFindReferences');
+            Route::post('api/clear-ui-settings', '\\Cvaize\\TranslationManager\\Controller@postClearUISettings');
 
-            Route::post('api/publish-group/{group}', '\\Vsch\\TranslationManager\\Controller@apiPublishGroup');
-            Route::post('api/import-group/{group}', '\\Vsch\\TranslationManager\\Controller@apiImportGroup');
-            Route::get('api/zipped-translations/{group?}', '\\Vsch\\TranslationManager\\Controller@apiZippedTranslations');
+            Route::post('api/publish-group/{group}', '\\Cvaize\\TranslationManager\\Controller@apiPublishGroup');
+            Route::post('api/import-group/{group}', '\\Cvaize\\TranslationManager\\Controller@apiImportGroup');
+            Route::get('api/zipped-translations/{group?}', '\\Cvaize\\TranslationManager\\Controller@apiZippedTranslations');
 
             // TODO: convert to Rest API
-            Route::get('api/app-settings-json', '\\Vsch\\TranslationManager\\Controller@getAppSettingsJson');
-            Route::post('api/missing-keys', '\\Vsch\\TranslationManager\\Controller@postMissingKeys');
+            Route::get('api/app-settings-json', '\\Cvaize\\TranslationManager\\Controller@getAppSettingsJson');
+            Route::post('api/missing-keys', '\\Cvaize\\TranslationManager\\Controller@postMissingKeys');
 
-            Route::post('api/trans-filters', '\\Vsch\\TranslationManager\\Controller@apiTransFilters');
+            Route::post('api/trans-filters', '\\Cvaize\\TranslationManager\\Controller@apiTransFilters');
 
-            // shared web and api urls 
+            // shared web and api urls
             // TODO: migrate to Rest Controller for implementation
-            Route::post('api/delete/{group}/{key}', '\\Vsch\\TranslationManager\\Controller@postDelete');
-            Route::post('api/edit/{group}', '\\Vsch\\TranslationManager\\Controller@postEdit');
-            Route::post('api/undelete/{group}/{key}', '\\Vsch\\TranslationManager\\Controller@postUndelete');
-            Route::post('api/user_locales', '\\Vsch\\TranslationManager\\Controller@postUserLocales');
+            Route::post('api/delete/{group}/{key}', '\\Cvaize\\TranslationManager\\Controller@postDelete');
+            Route::post('api/edit/{group}', '\\Cvaize\\TranslationManager\\Controller@postEdit');
+            Route::post('api/undelete/{group}/{key}', '\\Cvaize\\TranslationManager\\Controller@postUndelete');
+            Route::post('api/user_locales', '\\Cvaize\\TranslationManager\\Controller@postUserLocales');
         }
     }
 
@@ -1037,7 +1037,7 @@ class Controller extends BaseController
         // always on the default connection
         $this->manager->setConnectionName('');
 
-        /* @var $translator \Vsch\TranslationManager\Translator */
+        /* @var $translator \Cvaize\TranslationManager\Translator */
         $translator = App::make('translator');
 
         $affectedGroups = [];
@@ -1080,7 +1080,7 @@ class Controller extends BaseController
             $namespace = '';
         }
 
-        /* @var $translator \Vsch\TranslationManager\Translator */
+        /* @var $translator \Cvaize\TranslationManager\Translator */
         $translator = App::make('translator');
         $namespaceGroup = ($namespace ? $namespace . '::' : '') . $group;
         $augmentedGroup = $this->manager->getAugmentedGroup($namespace, $group);
@@ -1150,7 +1150,7 @@ class Controller extends BaseController
         $numTranslations = count($allTranslations);
         $translations = array();
 
-        /* @var $translator \Vsch\TranslationManager\Translator */
+        /* @var $translator \Cvaize\TranslationManager\Translator */
         $translator = App::make('translator');
 
         if ($group !== Manager::JSON_GROUP) {

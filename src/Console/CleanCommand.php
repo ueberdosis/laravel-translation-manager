@@ -1,7 +1,7 @@
-<?php namespace Vsch\TranslationManager\Console;
+<?php namespace Cvaize\TranslationManager\Console;
 
 use Illuminate\Console\Command;
-use Vsch\TranslationManager\Manager;
+use Cvaize\TranslationManager\Manager;
 
 class CleanCommand extends Command
 {
@@ -20,7 +20,7 @@ class CleanCommand extends Command
      */
     protected $description = 'Clean empty translations';
 
-    /** @var \Vsch\TranslationManager\Manager */
+    /** @var \Cvaize\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

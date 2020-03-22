@@ -1,5 +1,5 @@
 {
-    "name": "vsch/laravel-translation-manager",
+    "name": "cvaize/laravel-translation-manager",
     "description": "Enhanced Laravel Translation Manager",
     "keywords": [
         "laravel",
@@ -37,7 +37,7 @@
             "src/Support/helpers.php"
         ],
         "psr-4": {
-            "Vsch\\TranslationManager\\": "src/"
+            "Cvaize\\TranslationManager\\": "src/"
         }
     },
     "autoload-dev": {

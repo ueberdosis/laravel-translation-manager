@@ -1,4 +1,4 @@
-<?php namespace Vsch\TranslationManager;
+<?php namespace Cvaize\TranslationManager;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
@@ -36,8 +36,8 @@ class ManagerServiceProvider extends ServiceProvider
         $this->publishes([$configPath => config_path(self::PACKAGE . '.php')], 'config');
 
         $this->app->singleton(self::PACKAGE, function ($app) {
-            /* @var $manager \Vsch\TranslationManager\Manager */
-            $manager = $app->make('Vsch\TranslationManager\Manager');
+            /* @var $manager \Cvaize\TranslationManager\Manager */
+            $manager = $app->make('Cvaize\TranslationManager\Manager');
             return $manager;
         });
 
@@ -98,7 +98,7 @@ class ManagerServiceProvider extends ServiceProvider
         ], 'migrations');
 
         $config = $this->app['config']->get(self::PACKAGE . '.route', []);
-        $config['namespace'] = 'Vsch\TranslationManager';
+        $config['namespace'] = 'Cvaize\TranslationManager';
 
         //$router->group($config, function ($router) {
         //    $router->get('view/{group}', 'Controller@getView');
@@ -106,7 +106,7 @@ class ManagerServiceProvider extends ServiceProvider
         //});
 
         // Register Middleware so we can save our cached translations
-        $router->pushMiddlewareToGroup('web', 'Vsch\TranslationManager\RouteAfterMiddleware');
+        $router->pushMiddlewareToGroup('web', 'Cvaize\TranslationManager\RouteAfterMiddleware');
     }
 
     /**

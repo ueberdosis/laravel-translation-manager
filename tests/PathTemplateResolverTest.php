@@ -1,8 +1,8 @@
-<?php namespace Vsch\Tests;
+<?php namespace Cvaize\Tests;
 
-use Vsch\TranslationManager\Classes\PathTemplateResolver;
+use Cvaize\TranslationManager\Classes\PathTemplateResolver;
 
-class PathTemplateResolverTest extends \Vsch\Tests\TranslationManagerTestCase
+class PathTemplateResolverTest extends \Cvaize\Tests\TranslationManagerTestCase
 {
     protected $pathResolver;
 

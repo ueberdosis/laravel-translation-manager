@@ -1,8 +1,8 @@
 <?php
 
-namespace Vsch\TranslationManager\Repositories;
+namespace Cvaize\TranslationManager\Repositories;
 
-use Vsch\TranslationManager\Models\Translation;
+use Cvaize\TranslationManager\Models\Translation;
 
 class MysqlTranslatorRepository extends TranslatorRepository
 {
@@ -25,7 +25,7 @@ class MysqlTranslatorRepository extends TranslatorRepository
         }
 
         $ltm_translations = $this->getTranslationsTableName();
-        
+
         if ($setKeys) {
             $this->translation->getConnection()->affectingStatement($this->adjustTranslationTable(<<<SQL
                 UPDATE $ltm_translations SET was_used = 1 WHERE was_used = 0 AND (`group` = ? OR `group` LIKE ? OR `group` LIKE ?) AND `key` IN ($setKeys)

@@ -1,4 +1,4 @@
-<?php namespace Vsch\TranslationManager;
+<?php namespace Cvaize\TranslationManager;
 
 use Illuminate\Translation\TranslationServiceProvider as BaseTranslationServiceProvider;
 
@@ -19,17 +19,17 @@ class TranslationServiceProvider extends BaseTranslationServiceProvider
     public function register()
     {
         $this->registerLoader();
-        
+
         $db_driver = config('database.default');
 
         if ($db_driver === 'pgsql') {
-            $translatorRepository = 'Vsch\TranslationManager\Repositories\PostgresTranslatorRepository';
+            $translatorRepository = 'Cvaize\TranslationManager\Repositories\PostgresTranslatorRepository';
         } else {
-            $translatorRepository = 'Vsch\TranslationManager\Repositories\MysqlTranslatorRepository';
+            $translatorRepository = 'Cvaize\TranslationManager\Repositories\MysqlTranslatorRepository';
         }
 
         $this->app->bind(
-            'Vsch\TranslationManager\Repositories\Interfaces\ITranslatorRepository',
+            'Cvaize\TranslationManager\Repositories\Interfaces\ITranslatorRepository',
             $translatorRepository
         );
 
@@ -41,12 +41,12 @@ class TranslationServiceProvider extends BaseTranslationServiceProvider
             // configuration so we can easily get both of these values from there.
             $locale = $app['config']['app.locale'];
 
-            $trans = new \Vsch\TranslationManager\Translator($app, $loader, $locale);
+            $trans = new \Cvaize\TranslationManager\Translator($app, $loader, $locale);
 
             $trans->setFallback($app['config']['app.fallback_locale']);
 
-            if ($app->bound(\Vsch\TranslationManager\ManagerServiceProvider::PACKAGE)) {
-                $trans->setTranslationManager($app[\Vsch\TranslationManager\ManagerServiceProvider::PACKAGE]);
+            if ($app->bound(\Cvaize\TranslationManager\ManagerServiceProvider::PACKAGE)) {
+                $trans->setTranslationManager($app[\Cvaize\TranslationManager\ManagerServiceProvider::PACKAGE]);
             }
 
             return $trans;

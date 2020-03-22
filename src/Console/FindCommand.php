@@ -1,7 +1,7 @@
-<?php namespace Vsch\TranslationManager\Console;
+<?php namespace Cvaize\TranslationManager\Console;
 
 use Illuminate\Console\Command;
-use Vsch\TranslationManager\Manager;
+use Cvaize\TranslationManager\Manager;
 
 class FindCommand extends Command
 {
@@ -20,7 +20,7 @@ class FindCommand extends Command
      */
     protected $description = 'Find translations in php/twig files';
 
-    /** @var  \Vsch\TranslationManager\Manager */
+    /** @var  \Cvaize\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

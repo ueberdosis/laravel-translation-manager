@@ -1,9 +1,9 @@
-<?php namespace Vsch\TranslationManager\Console;
+<?php namespace Cvaize\TranslationManager\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Vsch\TranslationManager\Events\TranslationsPublished;
-use Vsch\TranslationManager\Manager;
+use Cvaize\TranslationManager\Events\TranslationsPublished;
+use Cvaize\TranslationManager\Manager;
 
 class ExportCommand extends Command
 {
@@ -22,7 +22,7 @@ class ExportCommand extends Command
      */
     protected $description = 'Export translations to PHP files';
 
-    /** @var \Vsch\TranslationManager\Manager */
+    /** @var \Cvaize\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

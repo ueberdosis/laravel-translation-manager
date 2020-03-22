@@ -1,6 +1,6 @@
 <?php
 ?>
-<h4><?php use Vsch\TranslationManager\Manager;
+<h4><?php use Cvaize\TranslationManager\Manager;
 
     trans($package . '::messages.search-header', ['count' => $numTranslations]) ?></h4>
 <table class="table table-translations">
@@ -13,10 +13,10 @@
     </tr>
   </thead>
   <tbody>
-      <?php 
-      $translator = App::make('translator'); 
+      <?php
+      $translator = App::make('translator');
       foreach ($translations as $t):
-          $groupUrl = action($controller . '@getView', $t->group); 
+          $groupUrl = action($controller . '@getView', $t->group);
           $isLocaleEnabled = str_contains($userLocales, ',' . $t->locale . ',');
           if ($t->group === Manager::JSON_GROUP && $t->locale === 'json' && $t->value === null || $t->value === '') {
               $t->value = $t->key;

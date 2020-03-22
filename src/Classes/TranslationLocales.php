@@ -1,12 +1,12 @@
 <?php
-namespace Vsch\TranslationManager\Classes;
+namespace Cvaize\TranslationManager\Classes;
 
-use Vsch\TranslationManager\Manager;
+use Cvaize\TranslationManager\Manager;
 
 class TranslationLocales
 {
     private $manager;
-    
+
     public $appLocale;
     public $currentLocale;
     public $primaryLocale;
@@ -36,7 +36,7 @@ class TranslationLocales
         natsort($arr);
         return $arr;
     }
-    
+
     private static function firstOf($arg) {
         if ($arg) {
             $json = '';
@@ -74,7 +74,7 @@ class TranslationLocales
         // trim to show locales and add additional locales
         $allShowLocales = $configShowLocales ? array_intersect($allLocales, $configShowLocales) : $allLocales;
         $locales = array_unique(array_merge($allShowLocales, $addConfigLocales));
-        
+
         $userLocales = $this->userLocales ?: $locales;
         $userLocales = array_values(array_unique(array_intersect($userLocales, $locales)));
 
@@ -95,7 +95,7 @@ class TranslationLocales
         }
 
         // now need to create displayLocales
-        if (!$displayLocales || count($displayLocales) === 0) $displayLocales = [$primaryLocale, $translatingLocale]; 
+        if (!$displayLocales || count($displayLocales) === 0) $displayLocales = [$primaryLocale, $translatingLocale];
         $displayLocales = array_intersect($displayLocales, $locales);
 
         // add primary, translating to list
