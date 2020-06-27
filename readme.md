@@ -2,6 +2,16 @@
 
 [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/vsch/laravel-translation-manager)
 
+`composer require cvaize/laravel-translation-manager`
+```
+// config/app.php
+'providers' => [
+        //...
+        Vsch\TranslationManager\TranslationServiceProvider::class, // 1!!!
+        Vsch\TranslationManager\ManagerServiceProvider::class, // 2!!!
+    ],
+```
+
 This package is used to comfortably manage, view, edit and translate Laravel language files with
 translation assistance through the Yandex Translation API. It augments the Laravel Translator
 system with a ton of practical functionality. [Features]
