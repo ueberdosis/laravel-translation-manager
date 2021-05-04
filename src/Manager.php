@@ -2,7 +2,6 @@
 
 namespace Vsch\TranslationManager;
 
-use Arr;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Arr;
