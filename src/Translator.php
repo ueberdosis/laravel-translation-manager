@@ -34,7 +34,7 @@ class Translator extends LaravelTranslator
 
     // Storage used for used translation keys
     protected $usedKeys = array();
-    
+
     protected $customPostProcessor = null;
 
     /**
@@ -121,7 +121,7 @@ class Translator extends LaravelTranslator
             $queuedCookieLocale = \Cookie::queued($key, null);
             $locale = getSupportedLocale($queuedCookieLocale != null ? $queuedCookieLocale->getValue() : \Cookie::get($key, ''));
             parent::setLocale($locale);
-            
+
             // load unpublished translation flag at the same time
             $this->getShowUnpublished();
             $this->cookiesLoaded = true;
@@ -346,7 +346,7 @@ class Translator extends LaravelTranslator
                 return call_user_func($this->customPostProcessor, $replaced);
             } else {
                 return $this->makeReplacements($line, $replace);
-            } 
+            }
         }
         return $line;
     }
@@ -789,6 +789,6 @@ HTML;
         if (!is_array($configLocales)) $configLocales = array($configLocales);
 
         $locales = array_merge(array($currentLocale), $configLocales, $locales);
-        return array_flatten(array_unique($locales));
+        return Arr::flatten(array_unique($locales));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Vsch\TranslationManager;
 
+use Arr;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Arr;
@@ -1652,7 +1653,7 @@ class Manager
     {
         $array = array();
         foreach ($translations as $translation) {
-            array_set($array[$translation->locale][$translation->group], $translation->key, $translation->value);
+            Arr::set($array[$translation->locale][$translation->group], $translation->key, $translation->value);
         }
         return $array;
     }
@@ -1666,7 +1667,7 @@ class Manager
             $group = $translation->group;
             $key = $translation->key;
             if (!array_key_exists($key, $nonArrays)) {
-                $value = array_get($tree[$translation->locale][$translation->group], $translation->key);
+                $value = Arr::get($tree[$translation->locale][$translation->group], $translation->key);
 
                 if (is_array($value)) {
                     // this one is an array while it is a translation in the source
